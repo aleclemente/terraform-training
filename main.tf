@@ -37,3 +37,7 @@ resource "local_file" "txtFileExample" {
       provider/hashicorp/random pet name: ${random_pet.petName.id}
   EOF
 }
+
+output "pet_name" {
+  value = "Pet name: ${random_pet.petName.id}"
+}
