@@ -11,13 +11,17 @@ terraform {
   }
 }
 
-resource "random_pet" "petName" {
+resource "random_pet" "pet_name" {
   prefix = "pet"
   separator = " "
   length    = 2
 }
 
-resource "local_file" "txtFileExample" {
+data "local_file" "external_data" {
+  filename = "${path.module}/external_data_file.txt"
+}
+
+resource "local_file" "txt_file_example" {
   filename = "${path.module}/example.txt"
     content  = <<EOF
       string content: ${var.string_content}
@@ -34,10 +38,11 @@ resource "local_file" "txtFileExample" {
       tuple content: ${jsonencode(var.tuple_content)}
       object name: ${var.object_content.name}, age: ${var.object_content.age}, active: ${var.object_content.active}
       object content: ${jsonencode(var.object_content)}
-      provider/hashicorp/random pet name: ${random_pet.petName.id}
+      provider/hashicorp/random pet name: ${random_pet.pet_name.id}
+      external_data_file.txt content: ${data.local_file.external_data.content}
   EOF
 }
 
 output "pet_name" {
-  value = "Pet name: ${random_pet.petName.id}"
+  value = "Pet name: ${random_pet.pet_name.id}"
 }
