@@ -1,3 +1,13 @@
-string content: This is an default example text file created by Terraform.
- number content: 1
- boolean content: true
+      string content: This is an default example text file created by Terraform.
+      number content: 1
+      boolean content: true
+      list first element: apple
+      list content: apple, banana, apple
+      set first element: apple
+      set content: apple, banana
+      map first element: Alex - age: 40
+      map content: {"age":"40","name":"Alex"}
+      tuple first element: Alex, second element: 40, third element: true
+      tuple content: ["Alex",40,true]
+      object name: Alex, age: 40, active: true
+      object content: {"active":true,"age":40,"name":"Alex"}
