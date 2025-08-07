@@ -4,14 +4,24 @@ terraform {
       source = "hashicorp/local"
       version = "~> 2.5.1"
     }
+    random = {
+      source = "hashicorp/random"
+      version = "3.7.2"
+    }
   }
+}
+
+resource "random_pet" "petName" {
+  prefix = "pet"
+  separator = " "
+  length    = 2
 }
 
 resource "local_file" "txtFileExample" {
   filename = "${path.module}/example.txt"
     content  = <<EOF
       string content: ${var.string_content}
-      
+
       number content: ${var.number_content}
       boolean content: ${var.boolean_content}
       list first element: ${var.list_content[0]}
@@ -24,5 +34,6 @@ resource "local_file" "txtFileExample" {
       tuple content: ${jsonencode(var.tuple_content)}
       object name: ${var.object_content.name}, age: ${var.object_content.age}, active: ${var.object_content.active}
       object content: ${jsonencode(var.object_content)}
+      provider/hashicorp/random pet name: ${random_pet.petName.id}
   EOF
 }

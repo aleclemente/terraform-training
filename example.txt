@@ -1,4 +1,7 @@
-      string content: This is an default example text file created by Terraform.
+      string content: Contents for terraform training. 
+This specific text value come from second.auto.tfvars and are used to populate the example.txt file with various types of content, demonstrating Terraform's capabilities with complex variable types. 
+Others values below comes from the default values at variables.tf file.
+
       number content: 1
       boolean content: true
       list first element: apple
@@ -11,3 +14,4 @@
       tuple content: ["Alex",40,true]
       object name: Alex, age: 40, active: true
       object content: {"active":true,"age":40,"name":"Alex"}
+      provider/hashicorp/random pet name: pet boss hedgehog
