@@ -1,1 +1,3 @@
-This is an example text file created by Terraform.
+string content: This is an default example text file created by Terraform.
+ number content: 1
+ boolean content: true

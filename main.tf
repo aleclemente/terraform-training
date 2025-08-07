@@ -9,5 +9,5 @@ terraform {
 
 resource "local_file" "txtFileExample" {
   filename = "${path.module}/example.txt"
-  content  = var.file_content
+  content  = "string content: ${var.string_content}\n number content: ${var.number_content}\n boolean content: ${var.boolean_content}"
 }
