@@ -11,6 +11,7 @@ resource "local_file" "txtFileExample" {
   filename = "${path.module}/example.txt"
     content  = <<EOF
       string content: ${var.string_content}
+      
       number content: ${var.number_content}
       boolean content: ${var.boolean_content}
       list first element: ${var.list_content[0]}

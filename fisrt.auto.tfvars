@@ -1,0 +1,3 @@
+# This file is used to define variables for the Terraform configuration. subscribe to the variables defined in variables.tf.
+
+string_content = "Contents for terraform training. \nThis specific text value come from first.auto.tfvars and are used to populate the example.txt file with various types of content, demonstrating Terraform's capabilities with complex variable types. \nOthers values below comes from the default values at variables.tf file."

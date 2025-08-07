@@ -1,0 +1,1 @@
+string_content = "Contents for terraform training. \nThis specific text value come from production.tfvars and are used to populate the example.txt file with various types of content, demonstrating Terraform's capabilities with complex variable types. \nOthers values below comes from the default values at variables.tf file."
