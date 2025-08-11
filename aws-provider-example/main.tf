@@ -39,3 +39,37 @@ resource "aws_instance" "instance_example" {
     Name = "instance-example-name"
   }
 }
+
+resource "aws_internet_gateway" "igw_example" {
+  vpc_id = aws_vpc.vpc_example.id
+  tags = {
+    Project = "terraform-training-01"
+    Name = "igw-example-name"
+  }
+}
+
+resource "aws_eip" "eip_example" {
+  instance = aws_instance.instance_example.id
+  tags = {
+    Project = "terraform-training-01"
+    Name = "eip-example-name"
+  }
+  depends_on = [ aws_internet_gateway.igw_example ]
+}
+
+resource "aws_ssm_parameter" "ssm_parameter_example" {
+  name  = "vm_ip"
+  type  = "String"
+  value = aws_eip.eip_example.public_ip
+  tags = {
+    Project = "terraform-training-01"
+  }
+}
+
+output "private_dns" {
+  value = aws_instance.instance_example.private_dns
+}
+
+output "eip" {
+  value = aws_eip.eip_example.public_ip
+}
