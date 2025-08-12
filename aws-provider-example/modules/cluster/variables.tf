@@ -8,9 +8,9 @@ variable "prefix" {
   type        = string
 }
 
-variable "subnet_id" {
-  description = "Subnet ID"
-  type        = string
+variable "subnet_ids" {
+  description = "List of Subnet ID"
+  type        = list(string)
 }
 
 variable "security_group_ids" {

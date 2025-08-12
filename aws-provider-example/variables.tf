@@ -16,6 +16,11 @@ variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
+variable "subnet_ids" {
+  description = "List of Subnet IDs"
+  type        = list(string)
+}
+
 variable "subnet_cidr_blocks" {
   description = "CIDR block for the subnet"
   type        = list(string)

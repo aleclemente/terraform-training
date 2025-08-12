@@ -13,6 +13,6 @@ module "cluster" {
   ami_id              = var.ami_id
   instance_count      = var.instance_count
   instance_type       = var.instance_type
-  subnet_id           = module.network.subnet_ids[0]
   security_group_ids  = [module.network.security_group_id]
+  subnet_ids          = module.network.subnet_ids
 }
