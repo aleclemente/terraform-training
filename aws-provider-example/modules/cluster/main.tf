@@ -1,13 +1,3 @@
-# CAUTION: arn number below is just an example. It is necessary to add a secret manager credentials in System Manager on aws, get the arn and write below
-data "aws_secretsmanager_secret" "secret" {
-  arn                       = "arn:aws:secretsmanager:us-east-1:123456789012:secret:example"
-}
-
-data "aws_secretsmanager_secret_version" "current" {
-  secret_id                 = data.aws_secretsmanager_secret.secret.id
-}
-
-# To get "Host" and "DB" data in secret manager it is necessary to add a secret manager credentials in System Manager on aws (see instruction above) with key/value: Host/localhost and DB/db
 resource "aws_launch_template" "template" {
   image_id                  = var.ami_id
   instance_type             = var.instance_type
@@ -18,8 +8,19 @@ resource "aws_launch_template" "template" {
   user_data = base64encode(
 <<EOF
 #!/bin/bash
-DB_STRING="Server=${jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)["Host"]};DB=${jsondecode(data.aws_secretsmanager_secret_version.current.secret_string)["DB"]}"
-echo $DB_STRING > test.txt
+yum update -y
+yum install -y nginx
+systemctl start nginx
+systemctl enable nginx
+public_ip=$(curl http://checkip.amazonaws.com/)
+echo "
+<html>
+  <head><title>Hello from Nginx!</title></head>
+  <body><h1>Hello from Nginx!</h1>
+  <p>Your public IP is: $public_ip</p>
+  </body>
+</html>" | tee /usr/share/nginx/html/index.html > dev/null
+systemctl restart nginx
 EOF
 )
 

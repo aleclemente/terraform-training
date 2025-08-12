@@ -52,7 +52,7 @@ resource "aws_security_group" "sg" {
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "sg_ingress_rule" {
+resource "aws_vpc_security_group_ingress_rule" "sg_ssh_ingress_rule" {
   security_group_id = aws_security_group.sg.id
   cidr_ipv4 = "0.0.0.0/0"
   ip_protocol = "tcp"
@@ -60,7 +60,19 @@ resource "aws_vpc_security_group_ingress_rule" "sg_ingress_rule" {
   to_port = 22
   tags = {
     project_name = var.project_name
-    Name = "${var.prefix}-sg-ingress"
+    Name = "${var.prefix}-sg-ssh-ingress"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "sg_http_ingress_rule" {
+  security_group_id = aws_security_group.sg.id
+  cidr_ipv4 = "0.0.0.0/0"
+  ip_protocol = "tcp"
+  from_port = 80
+  to_port = 80
+  tags = {
+    project_name = var.project_name
+    Name = "${var.prefix}-sg-http-ingress"
   }
 }
 
