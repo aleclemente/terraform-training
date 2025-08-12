@@ -8,6 +8,11 @@ variable "prefix" {
   type        = string
 }
 
+variable "vpc_id" {
+  description = "ID of the VPC"
+  type        = string
+}
+
 variable "subnet_ids" {
   description = "List of Subnet ID"
   type        = list(string)
@@ -18,7 +23,7 @@ variable "security_group_ids" {
   type        = list(string)
 }
 
-variable "ami_id" {
+variable "image_id" {
   description = "AMI ID for the instance"
   type        = string
 }
@@ -31,4 +36,36 @@ variable "instance_count" {
 variable "instance_type" {
   description = "Type of instance to create"
   type        = string
+}
+
+variable "user_data" {
+  type = string
+}
+
+variable "desired_capacity" {
+  type = number
+}
+
+variable "min_size" {
+  type = number
+}
+
+variable "max_size" {
+  type = number
+}
+
+variable "scale_in" {
+  type = object({
+    scaling_adjustment = number
+    cooldown           = number
+    threshold          = number
+  })
+}
+
+variable "scale_out" {
+  type = object({
+    scaling_adjustment = number
+    cooldown           = number
+    threshold          = number
+  })
 }
