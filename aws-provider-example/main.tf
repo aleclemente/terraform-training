@@ -1,5 +1,9 @@
 module "network" {
   source = "./modules/network"
+  project_name = var.project_name
+  prefix = var.prefix
+  vpc_cidr_block = var.vpc_cidr_block
+  subnet_cidr_block = var.subnet_cidr_blocks
 }
 
 # CAUTION: arn number below is just an example. It is necessary to add a secret manager credentials in System Manager on aws, get the arn and write below
@@ -15,7 +19,7 @@ data "aws_secretsmanager_secret_version" "current" {
 resource "aws_instance" "instance" {
   ami = "ami-0de716d6197524dd9"
   instance_type = "t2.micro"
-  subnet_id = module.network.subnet_id
+  subnet_id = module.network.subnet_ids[0]
   vpc_security_group_ids = [ module.network.security_group_id ]
   tags = {
     Project = "terraform-training-01"
