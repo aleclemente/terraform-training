@@ -13,7 +13,7 @@ resource "aws_launch_template" "template" {
   }
 
   tag_specifications {
-    resource_type = "instance"
+    resource_type   = "instance"
     tags = {
       project_name  = var.project_name
       Name          = "${var.prefix}-node"
