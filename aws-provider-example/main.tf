@@ -11,7 +11,6 @@ module "cluster" {
   project_name        = var.project_name
   prefix              = var.prefix
   image_id            = var.image_id
-  instance_count      = var.instance_count
   instance_type       = var.instance_type
   security_group_ids  = [module.network.security_group_id]
   subnet_ids          = module.network.subnet_ids
