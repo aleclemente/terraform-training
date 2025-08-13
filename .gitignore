@@ -1,6 +1,5 @@
 .idea/
-aws-provider-example/.terraform/
-local-provider-example/.terraform/
+*.terraform
 *.tfstate
 *.tfstate.backup
 *.terraform.lock.hcl
