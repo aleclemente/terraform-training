@@ -38,10 +38,6 @@ variable "instance_type" {
   type        = string
 }
 
-variable "user_data" {
-  type = string
-}
-
 variable "desired_capacity" {
   type = number
 }
@@ -68,4 +64,8 @@ variable "scale_out" {
     cooldown           = number
     threshold          = number
   })
+}
+
+variable "user_data" {
+  type = string
 }

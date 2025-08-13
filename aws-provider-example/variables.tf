@@ -56,23 +56,20 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
-variable "user_data" {
-  description = "User data to provide when launching the instance"
-  type        = string
-  default     = <<EOF
-#!/bin/bash
-yum update -y
-yum install -y nginx
-systemctl start nginx
-systemctl enable nginx
-public_ip=$(curl http://checkip.amazonaws.com/)
-echo "
-<html>
-  <head><title>Hello from Nginx!</title></head>
-  <body><h1>Hello from Nginx!</h1>
-  <p>Your public IP is: $public_ip</p>
-  </body>
-</html>" | tee /usr/share/nginx/html/index.html > dev/null
-systemctl restart nginx
-EOF
+variable "min_size" {
+  description = "Minimum size for the auto scaling group"
+  type        = number
+  default     = 1
+}
+
+variable "desired_capacity" {
+  description = "Desired capacity for the auto scaling group"
+  type        = number
+  default     = 2
+}
+
+variable "max_size" {
+  description = "Maximum size for the auto scaling group"
+  type        = number
+  default     = 3
 }

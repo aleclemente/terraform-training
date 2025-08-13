@@ -16,10 +16,10 @@ module "cluster" {
   security_group_ids  = [module.network.security_group_id]
   subnet_ids          = module.network.subnet_ids
   vpc_id              = module.network.vpc_id
-  user_data           = var.user_data
-  desired_capacity    = 2
-  min_size            = 1
-  max_size            = 3
+  desired_capacity    = var.desired_capacity
+  min_size            = var.min_size
+  max_size            = var.max_size
   scale_in            = var.scale_in
   scale_out           = var.scale_out
+  user_data           = file("install_nginx.sh")
 }
