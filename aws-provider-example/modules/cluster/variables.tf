@@ -28,11 +28,6 @@ variable "image_id" {
   type        = string
 }
 
-variable "instance_count" {
-  description = "Number of instances to create"
-  type        = number
-}
-
 variable "instance_type" {
   description = "Type of instance to create"
   type        = string

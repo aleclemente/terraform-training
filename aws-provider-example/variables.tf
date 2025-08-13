@@ -22,12 +22,6 @@ variable "subnet_cidr_blocks" {
   default     = ["10.0.0.0/24", "10.0.1.0/24"]
 }
 
-variable "instance_count" {
-  description = "Number of instances to create"
-  type        = number
-  default     = 2
-}
-
 variable "scale_in" {
   type = object({
     scaling_adjustment = number
