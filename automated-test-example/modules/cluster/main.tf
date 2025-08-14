@@ -85,7 +85,7 @@ resource "aws_cloudwatch_metric_alarm" "scale_in_alarm" {
   }
 }
 
-resource "aws_lb" "aws_alb" {
+resource "aws_lb" "app_lb" {
   name               = "${var.prefix}-app-lb"
   internal           = false
   load_balancer_type = "application"
@@ -122,7 +122,7 @@ resource "aws_lb_target_group" "app_tg" {
 }
 
 resource "aws_lb_listener" "app_lb_listener" {
-  load_balancer_arn = aws_lb.aws_alb.arn
+  load_balancer_arn = aws_lb.app_lb.arn
   port              = 80
   protocol          = "HTTP"
 

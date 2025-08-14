@@ -1,4 +1,4 @@
-output "lb_arn" {
+variable "lb_arn" {
   description = "The ARN of the application load balancer"
-  value       = aws_lb.app_lb.arn
+  type        = string
 }

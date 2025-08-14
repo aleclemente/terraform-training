@@ -39,6 +39,11 @@ resource "aws_route_table" "route_table" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
+
+  tags = {
+    project_name    = var.project_name
+    Name            = "${var.prefix}-subnet-${count.index}"
+  }
 }
 
 resource "aws_route_table_association" "route_table_association" {
